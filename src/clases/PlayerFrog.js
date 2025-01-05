@@ -24,24 +24,24 @@ export default class PlayerFrog extends Phaser.Physics.Arcade.Sprite {
       // Animación hacia la derecha
       this.anims.create({
           key: 'right',
-          frames: [{ key: 'frogSprite', frame: 1 }], 
-          frameRate: 5, // Animación más lenta
+          frames: this.anims.generateFrameNumbers('frogSprite', { start: 1, end: 2 }),
+          frameRate: 10, // Animación más lenta
           repeat: 0, // Ejecutar una sola vez      
       });
 
       // Animación hacia la izquierda 
       this.anims.create({
           key: 'left',
-          frames: [{ key: 'frogSprite', frame: 1 }],
-          frameRate: 5,
+          frames: this.anims.generateFrameNumbers('frogSprite', { start: 1, end: 2 }),
+          frameRate: 10,
           repeat: 0,
       });        
       
       // Animación hacia arriba 
       this.anims.create({
           key: 'up',
-          frames: [{ key: 'frogSprite', frame: 1 }],
-          frameRate: 5,
+          frames: this.anims.generateFrameNumbers('frogSprite', { start: 1, end: 2 }),
+          frameRate: 10,
           repeat: 0,
       }); 
       
@@ -136,7 +136,9 @@ export default class PlayerFrog extends Phaser.Physics.Arcade.Sprite {
           duration: 200, // Duración del salto en milisegundos
           ease: 'Power1', // Efecto de suavizado
           onComplete: () => {
-            this.scene.isJumping = false; // Permite otro salto al terminar el movimiento
+            setTimeout(() => {
+              this.scene.isJumping = false; // Permite otro salto al terminar el movimiento              
+            }, 100);
           }
         });
       }

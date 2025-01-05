@@ -21,7 +21,7 @@ export default class TroncoClass extends Phaser.Physics.Arcade.Group {
   newItem(pos) {
     let sw = 100;
     let sh = 100;
-    let toRight = true;
+    let toRight = Phaser.Math.RND.pick([true, false]);
     switch (pos) {
       case 'bottom':
         sw = 100;
@@ -36,7 +36,7 @@ export default class TroncoClass extends Phaser.Physics.Arcade.Group {
         break;
       
       case 'middle':
-        toRight = false;
+        toRight = !this.tronco.getData('movingRight'); //valor contrario al del tronco 1
         sw = 100;
         sh = 400;
         this.tronco4 = this.create( 80, sh, 'troncoSprite').setScale(0.8).setFlipX(toRight);
@@ -49,6 +49,7 @@ export default class TroncoClass extends Phaser.Physics.Arcade.Group {
         break;
       
         case 'top':
+          toRight = this.tronco.getData('movingRight'); //valor igual al del tronco 1
           sw = 100;
           sh = 350;        
           this.tronco7 = this.create( -220, sh, 'troncoSprite').setScale(0.8).setFlipX(toRight);
@@ -91,19 +92,21 @@ export default class TroncoClass extends Phaser.Physics.Arcade.Group {
         this.relatedScene.time.addEvent({
           delay: 16, // 16 ms = 60 FPS
           loop: true,
-          callback: () => {           
-            // Verificar si el tronco salió de la pantalla y resetear su posición
-            if (tronco.x < -135 || tronco.x > this.relatedScene.cw + 135) {
-              tronco.setX(tronco.x < -135 ? 960 + 135 : -100);
-            }
-            
-            // Mover el tronco según su dirección
-            const troncoSpeed = tronco.getData('troncoSpeed');
-            const movingRight = tronco.getData('movingRight');
-            if (movingRight) {
-              tronco.setX(tronco.x + troncoSpeed * 0.016); // Mover hacia la derecha
-            } else {
-              tronco.setX(tronco.x - troncoSpeed * 0.016); // Mover hacia la izquierda
+          callback: () => {
+            if (!this.relatedScene.isPaused ) {           
+              // Verificar si el tronco salió de la pantalla y resetear su posición
+              if (tronco.x < -135 || tronco.x > this.relatedScene.cw + 135) {
+                tronco.setX(tronco.x < -135 ? 960 + 135 : -100);
+              }
+              
+              // Mover el tronco según su dirección
+              const troncoSpeed = tronco.getData('itemSpeed');
+              const movingRight = tronco.getData('movingRight');
+              if (movingRight) {
+                tronco.setX(tronco.x + troncoSpeed * 0.016); // Mover hacia la derecha
+              } else {
+                tronco.setX(tronco.x - troncoSpeed * 0.016); // Mover hacia la izquierda
+              }
             }
           },
         });
@@ -131,7 +134,7 @@ export default class TroncoClass extends Phaser.Physics.Arcade.Group {
       .setSize(this.troncoWidth - 40, this.troncoHeight)
       .setOffset((movingRight ? 40 : 0), 0)
       .setData('movingRight', movingRight)
-      .setData('troncoSpeed', troncoSpeed)
+      .setData('itemSpeed', troncoSpeed)
       .play('moveTronco')
     ;
   }

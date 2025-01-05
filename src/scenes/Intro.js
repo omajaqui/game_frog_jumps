@@ -1,20 +1,22 @@
 import Menu from "../components/Menu.js?v=1.0";
+import AyudaGame from "../components/AyudaGame.js?v=1.0";
 
 class Intro extends Phaser.Scene {  
   constructor() {
     super('Intro');
     this.menu = new Menu(this);
+    this.ayudaGame = new AyudaGame(this);
   }
   init() {     
     this.verindicaciones = 'N';
-    this.iniciar;
+    this.jugar = false;
   }
   preload() {         
   }
   create() {
       this.btnMusicOn = this.add.sprite(40, 40, 'btn_music').setScale(0.25).setDepth(5).setInteractive({cursor:'pointer'}).setVisible(true);      
       this.background = this.add.image(this.sys.game.canvas.width / 2, this.sys.game.canvas.height / 2, 'backgroundIntro')
-          .setVisible(true).setDepth(1) ;
+        .setVisible(true).setDepth(1) ;
       ;
      
       // Reproduce la música de fondo en bucle
@@ -39,34 +41,25 @@ class Intro extends Phaser.Scene {
       this.keyz = this.input.keyboard.addKey(keys.Z);
       
       this.menu.create();
+      this.ayudaGame.create();
   }
 
   startBackgroundMusic() {  
-      setTimeout(() => {
-          if (!this.backgroundMusic.isPlaying) {
-              this.backgroundMusic.play();  // Reproduce el audio   
-          }                     
-      }, 1000);      
+    setTimeout(() => {
+      if (!this.backgroundMusic.isPlaying && !this.jugar) {
+        this.backgroundMusic.play();  // Reproduce el audio   
+      }                     
+    }, 1000);      
   }
 
   indicaciones(){
+    this.jugar = true;
+    this.backgroundMusic.stop();
     this.scene.start('Loading', { sceneToLoad: 'ScenePpal' });         
   }
 
-  async startScene(data) {
-    console.log(data);
-
-    this.backgroundMusic.stop();
-    try {
-      await this.textToSpeech.speak(`Letra, ${data.leter}.`, 2);            
-    } catch (error) {
-      console.log(error);
-    }
-    await this.textToSpeech.speak(`En inglés se pronuncia.`, 2);
-    await this.textToSpeech.speak(`${data.leter}.`, 1);
-    await this.textToSpeech.speak('Comencemos.', 2);
-    console.log(data.sceneToLoad);
-    this.scene.start('Loading', { sceneToLoad: data.sceneToLoad });    
+  showHelp() {
+    this.ayudaGame.mostrarContenido();
   }
   
   update(time, delta) {      

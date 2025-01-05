@@ -79,26 +79,27 @@ class Loading extends Phaser.Scene {
     //Recursos para todas las scenas
     this.load
       .image('btn_listen',`img/icons/listen.png?${_autoVersionPhaser}`)
-      .image('btn_todobien', `img/icons/todoBien.png?${_autoVersionPhaser}`)            
+      .image('btn_todobien', `img/icons/todoBien.png?${_autoVersionPhaser}`)
+      .image('recurso_star', `img/niveles/star.png?${_autoVersionPhaser}`)
 
       .audio('winner', 'sonidos/winner.mp3')
+
+      //recursos para el menu
+      .image('menu_context', `img/menu/menu.png?${_autoVersionPhaser}`)
+      .image('btn_jugar', `img/menu/btn_jugar.png?${_autoVersionPhaser}`)
+      .image('btn_ayuda', `img/menu/btn_ayuda.png?${_autoVersionPhaser}`)
+      .image('btn_close', `img/menu/btn_close.png?${_autoVersionPhaser}`)
+      .image('btn_reiniciar', `img/menu/btn_reiniciar.png?${_autoVersionPhaser}`)
+      .image('btn_menu', `img/menu/btn_menu.png?${_autoVersionPhaser}`)
     ;
 
     switch (this.targetScene ) {
       case 'Intro':
-        //recursos para el menu
-        this.load
-          .image('menu_context', `img/menu/menu.png?${_autoVersionPhaser}`)
-          .image('btn_jugar', `img/menu/btn_jugar.png?${_autoVersionPhaser}`)
-          .image('btn_ayuda', `img/menu/btn_ayuda.png?${_autoVersionPhaser}`)
-          .image('btn_close', `img/menu/btn_close.png?${_autoVersionPhaser}`)
-        ;       
-
         this.load
           .image('backgroundIntro',`img/backgrounds/backgroundIntro.png?${_autoVersionPhaser}`)
           .image('bgOverlay',`img/backgrounds/overlay_black.png?${_autoVersionPhaser}`)
-          .image('btn_music',`img/icons/music_on.png?${_autoVersionPhaser}`)
-          .image('recurso_star', `img/niveles/star.png?${_autoVersionPhaser}`)
+          .image('btn_music',`img/icons/music_on.png?${_autoVersionPhaser}`) 
+          .image('recurso_ayuda',`img/ayuda.png?${_autoVersionPhaser}`)         
         ;                
         this.load.audio('backgroundMusic', 'sonidos/bg_Intro.mp3');
       break;
@@ -106,22 +107,32 @@ class Loading extends Phaser.Scene {
     case 'ScenePpal':
       this.load.spritesheet('frogSprite', `img/player/ranaSpritesheet.png?${_autoVersionPhaser}`, { frameWidth: 128, frameHeight: 154 });
       this.load.spritesheet('troncoSprite', `img/sprites/troncoSpritesheet.png?${_autoVersionPhaser}`, { frameWidth: 270, frameHeight: 56 });
+      this.load.spritesheet('crocodileSprite', `img/sprites/crocodileSpritesheet.png?${_autoVersionPhaser}`, { frameWidth: 150, frameHeight: 56 });
 
       this.load
          .image('bg_scenePpal',`img/backgrounds/bg_scene_ppal.png?${_autoVersionPhaser}`)
          .image('bg_scenePpal_ref',`img/backgrounds/bg_scene_ppal_ref.png?${_autoVersionPhaser}`)
+         .image('bg_info_game',`img/backgrounds/bg_info_game.png?${_autoVersionPhaser}`)
 
          .image('island_short',`img/island_short.png?${_autoVersionPhaser}`)
          .image('island_long',`img/island_long.png?${_autoVersionPhaser}`)
          .image('ground_down',`img/ground_down.png?${_autoVersionPhaser}`)
          .image('nanufar',`img/nanufar.png?${_autoVersionPhaser}`)
+         .image('nanufar_flor',`img/nanufar_flor.png?${_autoVersionPhaser}`)
          .image('nanufar_little',`img/nanufar_little.png?${_autoVersionPhaser}`)
          .image('trunk_slice',`img/rodaja_tronco.png?${_autoVersionPhaser}`)
+         .image('arbusto_tropical',`img/arbusto_tropical.png?${_autoVersionPhaser}`)
+         .image('arbusto_hojas',`img/arbusto_hojas.png?${_autoVersionPhaser}`)
+         .image('mosca',`img/mosca.png?${_autoVersionPhaser}`)
+         .image('frog_face',`img/frog_face.png?${_autoVersionPhaser}`)
       ;
 
       // sonidos
       this.load
+        .audio('soundTheme', 'sonidos/themeScenePpal.mp3')
         .audio('jumpSound', 'sonidos/jump.mp3')
+        .audio('splashSound', 'sonidos/splash.mp3')
+        .audio('successSound', 'sonidos/success.mp3')
       ;
       break;    
       
