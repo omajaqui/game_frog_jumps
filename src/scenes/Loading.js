@@ -107,7 +107,7 @@ class Loading extends Phaser.Scene {
     case 'ScenePpal':
       this.load.spritesheet('frogSprite', `img/player/ranaSpritesheet.png?${_autoVersionPhaser}`, { frameWidth: 128, frameHeight: 154 });
       this.load.spritesheet('troncoSprite', `img/sprites/troncoSpritesheet.png?${_autoVersionPhaser}`, { frameWidth: 270, frameHeight: 56 });
-      this.load.spritesheet('crocodileSprite', `img/sprites/crocodileSpritesheet.png?${_autoVersionPhaser}`, { frameWidth: 150, frameHeight: 56 });
+      this.load.spritesheet('tortugaSprite', `img/sprites/tortugaSpritesheet.png?${_autoVersionPhaser}`, { frameWidth: 150, frameHeight: 56 });
 
       this.load
          .image('bg_scenePpal',`img/backgrounds/bg_scene_ppal.png?${_autoVersionPhaser}`)

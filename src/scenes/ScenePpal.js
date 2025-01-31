@@ -98,7 +98,7 @@ class ScenePpal extends Phaser.Scene {
       const key = element.texture.key;
       switch (key) {
         case 'troncoSprite':
-        case 'crocodileSprite':
+        case 'tortugaSprite':
           const movingRight = element.getData('movingRight');
           const itemSpeed = element.getData('itemSpeed');
 

@@ -22,9 +22,9 @@ export default class CrocodileClass extends Phaser.Physics.Arcade.Group {
       case 'middle':        
         sw = 100;
         sh = 220;
-        this.crocodile = this.create( 80, sh, 'crocodileSprite').setScale(0.9).setFlipX(!toRight);
-        this.crocodile2 = this.create( this.relatedScene.cw/2, sh, 'crocodileSprite').setScale(0.9).setFlipX(!toRight);
-        this.crocodile3 = this.create( this.relatedScene.cw -80, sh, 'crocodileSprite').setScale(0.9).setFlipX(!toRight);
+        this.crocodile = this.create( 80, sh, 'tortugaSprite').setScale(0.9).setFlipX(!toRight);
+        this.crocodile2 = this.create( this.relatedScene.cw/2, sh, 'tortugaSprite').setScale(0.9).setFlipX(!toRight);
+        this.crocodile3 = this.create( this.relatedScene.cw -80, sh, 'tortugaSprite').setScale(0.9).setFlipX(!toRight);
 
         this.crocodile = this.configureItem(this.crocodile, toRight, this.itemSpeed ,timeDead);
         this.crocodile2 = this.configureItem(this.crocodile2, toRight, this.itemSpeed ,timeDead);
@@ -35,9 +35,9 @@ export default class CrocodileClass extends Phaser.Physics.Arcade.Group {
           toRight = !this.crocodile.getData('movingRight'); //valor contrario al del crocodile 1
           sw = 100;
           sh = 100;
-          this.crocodile4 = this.create( 80, sh, 'crocodileSprite').setScale(0.9).setFlipX(!toRight);
-          this.crocodile5 = this.create( this.relatedScene.cw/2, sh, 'crocodileSprite').setScale(0.9).setFlipX(!toRight);
-          this.crocodile6 = this.create( this.relatedScene.cw -80, sh, 'crocodileSprite').setScale(0.9).setFlipX(!toRight);
+          this.crocodile4 = this.create( 80, sh, 'tortugaSprite').setScale(0.9).setFlipX(!toRight);
+          this.crocodile5 = this.create( this.relatedScene.cw/2, sh, 'tortugaSprite').setScale(0.9).setFlipX(!toRight);
+          this.crocodile6 = this.create( this.relatedScene.cw -80, sh, 'tortugaSprite').setScale(0.9).setFlipX(!toRight);
 
           this.crocodile4 = this.configureItem(this.crocodile4, toRight, this.itemSpeed, timeDead);
           this.crocodile5 = this.configureItem(this.crocodile5, toRight, this.itemSpeed, timeDead);
@@ -98,7 +98,7 @@ export default class CrocodileClass extends Phaser.Physics.Arcade.Group {
     // Añadir la animación del tronco1
     this.relatedScene.anims.create({
       key: 'move',       // Nombre de la animación
-      frames: this.relatedScene.anims.generateFrameNumbers('crocodileSprite', { start: 0, end: 1 }),
+      frames: this.relatedScene.anims.generateFrameNumbers('tortugaSprite', { start: 0, end: 1 }),
       frameRate: 5,           // Velocidad de la animación
       repeat: -1               // Repetir indefinidamente
     });
@@ -109,7 +109,7 @@ export default class CrocodileClass extends Phaser.Physics.Arcade.Group {
       .setOffset((movingRight ? 25 : 10), 0)
       .setData('movingRight', movingRight)
       .setData('itemSpeed', speed)
-      .setData('timeDead', timeDead)
+      // .setData('timeDead', timeDead)
       .play('move')
     ;
   }
