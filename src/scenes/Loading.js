@@ -81,7 +81,6 @@ class Loading extends Phaser.Scene {
       .image('btn_listen',`img/icons/listen.png?${_autoVersionPhaser}`)
       .image('btn_todobien', `img/icons/todoBien.png?${_autoVersionPhaser}`)
       .image('recurso_star', `img/niveles/star.png?${_autoVersionPhaser}`)
-
       .audio('winner', 'sonidos/winner.mp3')
 
       //recursos para el menu
@@ -102,6 +101,7 @@ class Loading extends Phaser.Scene {
           .image('recurso_ayuda',`img/ayuda.png?${_autoVersionPhaser}`)         
         ;                
         this.load.audio('backgroundMusic', 'sonidos/bg_Intro.mp3');
+        this.load.audio('welcome_audio', 'sonidos/bienvenidoRanita.mp3');
       break;
 
     case 'ScenePpal':
